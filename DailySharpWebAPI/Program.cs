@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using DotEnv.Core;
+using System.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+new EnvLoader().Load();
+string connectionString = Environment.GetEnvironmentVariable("SQL_CONNECTION");
+Console.WriteLine(connectionString);
+Debug.WriteLine("----------------------------------------");
+
+builder.Services.AddDbContext<DailyContext>(opt => opt.UseSqlServer(connectionString));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

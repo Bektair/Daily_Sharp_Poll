@@ -1,0 +1,23 @@
+User/Contributor has discord id
+It has discord name
+
+The poll has one or zero overall questions
+It has a contributor(default me) of the poll
+It has one to many pollQuestion
+It has a topic
+
+PK(poll+question+dateAsked)
+The pollQuestion has a poll
+It has a question
+It has a dateAsked
+It has one to many reactions
+        
+        
+The reaction has name
+it has amount
+
+The question has one or zero pictures
+I have one to many alternatives 
+
+The alternative has one emoji
+It has textContent
