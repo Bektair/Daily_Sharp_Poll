@@ -1,0 +1,34 @@
+version: '3.4'
+services:
+  daily_sharp_poll_db:
+    container_name: ${CONTAINER_NAME}
+    env_file:
+      - .env
+    image: ms_db
+    init: true
+    ports:
+      - "1433:1433"
+    environment:
+      - COMPOSE_PROJECT_NAME
+    volumes:
+      - ./volume:/var/opt/mssql/data
+  daily_sharp_poll:
+    container_name: "DailySharp"
+    env_file:
+      - .env
+    image: sharpy
+    init: true
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT
+      - ASPNETCORE_URLS
+      - ASPNETCORE_Kestrel__Certificates__Default__Password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path
+      - SQL_CONNECTION
+    volumes:
+      - ~/.aspnet/https:/https:ro
+networks:
+  mynetwork:
+    driver: bridge

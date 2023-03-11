@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DailySharpWebAPI.Models;
+using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 /// <summary>
 /// The poll has one or zero overall questions
@@ -8,21 +10,20 @@ using System.ComponentModel.DataAnnotations;
 /// </summary>
 public class Poll
 {
-
-
-    public int Id { get; set; }
+    public long Id { get; set; }
     public string Topic { get; set; }
 
     public string OverallQuestion { get; set; }
 
     // Navigation Properties
+    public long ContributorId { get; set; }
 
-    //public ICollection<Chat> Chats { get; set; }
+    public Contributor Contributor { get; set; }
 
-    public Contributor ContributorName { get; set; }
-    public int ContributorId { get; set; }
+    public ICollection<Question> Questions { get; set; }
 
-    //public PollQuestion pollQuestion { get; set; }
-    //public int pollQuestionId { get; set; }
+    [JsonIgnore]
+    public ICollection<PollPost> PollPost { get; set; }
+
 
 }

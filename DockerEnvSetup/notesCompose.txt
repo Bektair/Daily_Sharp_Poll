@@ -1,0 +1,4 @@
+Må sette network: bridge for at man skal kunne connecte fra EF :)
+
+ENV  SPNETCORE_ENVIRONMENT="Development"
+ENV  ASPNETCORE_URLS="https://+:443;http://+:80"
